@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
 module CanCan
   module ModelAdapters
     class ActiveRecordAdapter < AbstractAdapter
@@ -52,7 +55,7 @@ module CanCan
           # Search again in case of polymorphic associations, this time matching on the :has_many side
           # via the :as option, as well as klass
           foreign_key ||= parent_class.reflect_on_all_associations(:has_many).find do |has_many_assoc|
-            !matching_parent_child_polymorphic_association(has_many_assoc, child_class).nil?
+            matching_parent_child_polymorphic_association(has_many_assoc, child_class)
           end&.foreign_key&.to_sym
 
           foreign_key.nil? ? nil : all_conditions[foreign_key]
@@ -61,7 +64,7 @@ module CanCan
         def matching_parent_child_polymorphic_association(parent_assoc, child_class)
           return nil unless parent_assoc.klass == child_class
           return nil if parent_assoc&.options[:as].nil?
-  
+
           child_class.reflect_on_all_associations(:belongs_to).find do |child_assoc|
             # Only match this way for polymorphic associations
             child_assoc.polymorphic? && child_assoc.name == parent_assoc.options[:as]
@@ -72,12 +75,12 @@ module CanCan
           child_class = child.is_a?(Class) ? child : child.class
           parent_class = parent.is_a?(Class) ? parent : parent.class
 
-          association = child_class.reflect_on_all_associations(:belongs_to).find do |association|
+          association = child_class.reflect_on_all_associations(:belongs_to).find do |belongs_to_assoc|
             # Do not match on polymorphic associations or it will throw an error (klass cannot be determined)
-            !association.polymorphic? && association.klass == parent.class
+            !belongs_to_assoc.polymorphic? && belongs_to_assoc.klass == parent.class
           end
 
-          return association unless association.nil?
+          return association if association
 
           parent_class.reflect_on_all_associations(:has_many).each do |has_many_assoc|
             association ||= matching_parent_child_polymorphic_association(has_many_assoc, child_class)
@@ -217,6 +220,9 @@ module CanCan
     end
   end
 end
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/AbcSize
 
 ActiveSupport.on_load(:active_record) do
   send :include, CanCan::ModelAdditions
