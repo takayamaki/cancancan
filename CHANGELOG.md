@@ -1,3 +1,9 @@
+## 3.6.0
+
+* [#849](https://github.com/CanCanCommunity/cancancan/pull/849): Update tests matrix. ([@coorasse][])
+* [#843](https://github.com/CanCanCommunity/cancancan/pull/843): Compress duplicate rules. ([@MrChoclate][])
+* [#841](https://github.com/CanCanCommunity/cancancan/pull/841): New https://cancancan.dev website. ([@pandermatt][])
+* [#839](https://github.com/CanCanCommunity/cancancan/pull/839): switch from database column detection to Rails attributes detection. ([@kalsan][])
 ## 3.5.0
 
 * [#653](https://github.com/CanCanCommunity/cancancan/pull/653): Add support for using an nil relation as a condition. ([@ghiculescu][])
@@ -707,3 +713,6 @@ Please read the [guide on migrating from CanCanCan 2.x to 3.0](https://github.co
 [@Juleffel]: https://github.com/Juleffel
 [@honigc]: https://github.com/honigc
 [@WriterZephos]: https://github.com/WriterZephos
+[@MrChoclate]: https://github.com/MrChoclate
+[@pandermatt]: https://github.com/pandermatt
+[@kalsan]: https://github.com/kalsan
