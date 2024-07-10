@@ -2,6 +2,10 @@
 
 * [#855](https://github.com/CanCanCommunity/cancancan/pull/855): Fix issue with compressing STI rules. ([@sjoulbak][])
 
+## 3.6.1
+
+* [#847](https://github.com/CanCanCommunity/cancancan/pull/847): Fix: rule_spec should honor DB setting ([@tardate][])
+
 ## 3.6.0
 
 * [#849](https://github.com/CanCanCommunity/cancancan/pull/849): Update tests matrix. ([@coorasse][])
@@ -721,4 +725,5 @@ Please read the [guide on migrating from CanCanCan 2.x to 3.0](https://github.co
 [@MrChoclate]: https://github.com/MrChoclate
 [@pandermatt]: https://github.com/pandermatt
 [@kalsan]: https://github.com/kalsan
+[@tardate]: https://github.com/tardate
 [@sjoulbak]: https://github.com/sjoulbak
