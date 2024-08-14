@@ -1413,7 +1413,7 @@ RSpec.describe CanCan::ModelAdapters::ActiveRecordAdapter do
         self.abstract_class = true
       end
 
-      class Vehicle < ApplicationRecord
+      class Vehicle < ActiveRecord::Base
       end
 
       class Airplane < Vehicle
